@@ -116,7 +116,7 @@ class Arc(BaseShape):
         step_angle = abs(end_angle - start_angle) / precision
         points = numpy.array(self.start)
 
-        for n in xrange(1, precision):
+        for n in range(1, precision):
             x = self.center[0] + self.radius * numpy.cos(start_angle + prefix * n * step_angle)
             y = self.center[1] + self.radius * numpy.sin(start_angle + prefix * n * step_angle)
             points = numpy.append(points, [x, y])
@@ -154,8 +154,8 @@ class Polygon(BaseShape):
         else:
             points = list(self._points)
             shape_points = list(shape.points)
-            if cmp(points[-2:], shape_points[:2]) == 0:
-                if cmp(points[:2], shape_points[-2:]) != 0:
+            if points[-2:] == shape_points[:2]:
+                if points[:2] != shape_points[-2:]:
                     points.extend(shape_points[2:])
             else:
                 points.extend(shape_points)
@@ -241,8 +241,8 @@ class Hole(BaseShape):
         else:
             points = list(self._points)
             shape_points = list(shape.points)
-            if cmp(points[-2:], shape_points[:2]) == 0:
-                if cmp(points[:2], shape_points[-2:]) != 0:
+            if points[-2:] == shape_points[:2]:
+                if points[:2] != shape_points[-2:]:
                     points.extend(shape_points[2:])
             else:
                 points.extend(shape_points)
@@ -328,7 +328,7 @@ class Circle(Polygon):
         step_angle = 2 * numpy.pi / self._precision
         points = numpy.array(self.start)
 
-        for n in xrange(1, self._precision):
+        for n in range(1, self._precision):
             x = self.center[0] + self.radius * numpy.cos(start_angle + prefix * n * step_angle)
             y = self.center[1] + self.radius * numpy.sin(start_angle + prefix * n * step_angle)
             points = numpy.append(points, [x, y])

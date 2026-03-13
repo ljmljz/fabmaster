@@ -2,3 +2,7 @@
 *.o
 *.so
 .idea/
+.venv/
+.vscode/
+package-lock.json
+package.json

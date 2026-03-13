@@ -377,16 +377,18 @@ static PyTypeObject Geometry_ClassInfo =
     Geometry_new,                                           // tp_new
 };
 
-PyMODINIT_FUNC init_geometry() {
+PyMODINIT_FUNC PyInit__geometry(void) {
     PyObject* pReturn = 0;
     Geometry_ClassInfo.tp_new = PyType_GenericNew;       //此类的new内置函数—建立对象.
 
     if(PyType_Ready(&Geometry_ClassInfo) < 0)
-        return;
+        return NULL;
 
     pReturn = Py_InitModule3("_geometry", Geometry_MethodMembers, "extension for geometry methods");
     Py_INCREF(&Geometry_ClassInfo);
     PyModule_AddObject(pReturn, "Geometry", (PyObject*)&Geometry_ClassInfo); //将这个类加入到模块的Dictionary中.
 
     import_array();
+    
+    return pReturn;
 }
