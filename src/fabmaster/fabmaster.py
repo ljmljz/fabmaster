@@ -8,6 +8,7 @@ from outline import OutLine
 from setting import SCALE_RATE
 from setting import BOARD_HEIGHT, PAD_HEIGHT
 import logging
+import os
 
 import json
 import numpy as np
@@ -64,7 +65,7 @@ class FabMaster(object):
         section_func = None
         section_fields = None
 
-        f = open(self._filename, 'rb')
+        f = open(self._filename, 'r', encoding='utf-8', errors='replace')
         for line in f:
             a = line.split('!')
             a.pop()
@@ -78,12 +79,12 @@ class FabMaster(object):
                     section_name = self._sections[sec_index][0]
                     section_func = self._sections[sec_index][1]
                     section_fields = a[1:]
-                    # print "SECTION %2d %s <%s>" % (sec_index+1,section_name,section_fields)
+                    # print("SECTION %2d %s <%s>" % (sec_index+1,section_name,section_fields))
                 else:
                     section_name = None
                     section_func = None
                     section_fields = a[1:]
-                    print "Unexpected section #%d at line %d" % (sec_index + 1, line_num)
+                    print("Unexpected section #%d at line %d" % (sec_index + 1, line_num))
                 sec_index += 1
             elif a[0] == 'S':
                 if section_func:
@@ -146,7 +147,7 @@ class FabMaster(object):
 
         padname = data['PAD_NAME']
 
-        if self.pads.has_key(padname):
+        if padname in self.pads:
             self.pads[padname].append(Pad(data))
         else:
             self.pads[padname] = [Pad(data)]
@@ -471,19 +472,19 @@ if __name__ == "__main__":
     # FILENAME = "../../test/package.cad"
 
     time1 = datetime.datetime.now()
-    print time1
+    print(time1)
 
     fab = FabMaster(FILENAME)
     fab.parse()
 
-    print datetime.datetime.now() - time1
+    print(datetime.datetime.now() - time1)
 
     # fab.main()
     # fab.outline._save_to_obj()
     # fab.uv()
     fab.export(os.path.join(CAD_FILE_PATH, 'data'))
 
-    print "Done"
+    print("Done")
     time2 = datetime.datetime.now()
-    print time2
-    print time2 - time1
+    print(time2)
+    print(time2 - time1)

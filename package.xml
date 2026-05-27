@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package metadata>
+  <name>fabmaster</name>
+  <version>0.0.1</version>
+  <description>Allegro CAD file parser and 3D PCB/components models generator</description>
+
+  <maintainer email="ljzljm@163.com">Jimmy Li</maintainer>
+  <license>MIT</license>
+  <url>https://github.com/fabmaster/fabmaster</url>
+
+  <requires-python>>=3.6</requires-python>
+  <dependencies>
+    <package>numpy</package>
+    <package>numpy-stl</package>
+    <package>svgwrite</package>
+    <package>Pillow</package>
+    <package>pyassimp</package>
+  </dependencies>
+
+  <keywords>
+    PCB
+    Allegro
+    CAD
+    STL
+    UV mapping
+    3D
+  </keywords>
+
+  <classifiers>
+    <classifier>Development Status :: 3 - Alpha</classifier>
+    <classifier>Intended Audience :: Developers</classifier>
+    <classifier>License :: OSI Approved :: MIT License</classifier>
+    <classifier>Programming Language :: Python :: 3</classifier>
+    <classifier>Programming Language :: Python :: 3.6</classifier>
+    <classifier>Programming Language :: Python :: 3.7</classifier>
+    <classifier>Programming Language :: Python :: 3.8</classifier>
+    <classifier>Programming Language :: Python :: 3.9</classifier>
+    <classifier>Programming Language :: Python :: 3.10</classifier>
+    <classifier>Programming Language :: Python :: 3.11</classifier>
+    <classifier>Programming Language :: Python :: 3.12</classifier>
+  </classifiers>
+</package>

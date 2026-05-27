@@ -12,7 +12,7 @@ def compress(path):
     try:
         os.chdir(path)
     except IOError:
-        print "%s is not found" % path
+        print("%s is not found" % path)
 
     with zipfile.ZipFile('data.zip', 'w') as zf:
         for root, dirs, files, in os.walk(os.path.join('.', 'meshes', 'packages')):
